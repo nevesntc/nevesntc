@@ -2,7 +2,7 @@
 
 **`Desenvolvedor FullStack`**
 
-Muito prazer! Meu nome é Bruno. Sou estudante de Engenharia de Software e atualmente Desenvolvedor Full Stack. Aqui, você poderá encontrar o meu resumo profissional na área da tecnologia e poderá analisar todos os meus trabalhos desta plataforma. Seja bem vindo e caso você queira entrar em contato comigo, os links para as minhas redes sociais estão logo abaixo.
+Muito prazer! Meu nome é Bruno. Sou estudante de Engenharia de Software, CEO da empresa [@MegaHype](https://github.com/MegaHypeBusiness) e atualmente Desenvolvedor Full Stack. Aqui, você poderá encontrar o meu resumo profissional na área da tecnologia e poderá analisar todos os meus trabalhos desta plataforma. Seja bem vindo e caso você queira entrar em contato comigo, os links para as minhas redes sociais estão logo abaixo.
 
 <p align="left">
     <a href="https://www.instagram.com/nevesntc/" target="_blank">
