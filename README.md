@@ -10,13 +10,9 @@
 
 <br/><br/>
 
-<!-- Profile Views + Stars + Followers -->
+<!-- Profile Views + Followers -->
 <a href="https://github.com/nevesntc?tab=followers">
   <img alt="Seguidores" src="https://custom-icon-badges.demolab.com/github/followers/nevesntc?color=4f46e5&labelColor=3730a3&style=for-the-badge&logo=github&label=Seguidores&logoColor=white" />
-</a>
-&nbsp;
-<a href="https://github.com/nevesntc?tab=repositories&sort=stargazers">
-  <img alt="Estrelas" src="https://custom-icon-badges.demolab.com/github/stars/nevesntc?color=7c3aed&style=for-the-badge&labelColor=6d28d9&logo=star&label=Estrelas" />
 </a>
 &nbsp;
 <img src="https://komarev.com/ghpvc/?username=nevesntc&label=Visitantes&color=7c3aed&style=for-the-badge" alt="profile views" />
@@ -94,11 +90,35 @@ const bruno = {
 
 ---
 
+## 🏆 Troféus GitHub
+
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=nevesntc&theme=discord&no-frame=true&no-bg=true&margin-w=6&column=7" alt="trophies" />
+</div>
+
+---
+
+## 📊 Atividade Recente
+
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=nevesntc&bg_color=0d1117&color=a78bfa&line=7c3aed&point=ffffff&area=true&area_color=7c3aed&hide_border=true" alt="activity graph" />
+</div>
+
+---
+
+## 💬 Dev Quote do Dia
+
+<div align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark" alt="dev quote" />
+</div>
+
+---
+
 ## 📬 Vamos conversar?
 
 <div align="center">
 
-Se quiser **colaborar em projetos**, **trocar uma ideia** ou **contratar meus serviços** — me chama! 😄
+Se quiser **colaborar em projetos**, **trocar uma ideia** ou **contratar meus serviços** — me chama!
 
 <br/>
 
