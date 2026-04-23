@@ -2,7 +2,7 @@ name: Update Year
 
 on:
   schedule:
-    - cron: '0 0 1 1 *' # todo 1º de janeiro
+    - cron: '0 0 1 1 *'
   workflow_dispatch:
 
 jobs:
@@ -20,5 +20,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git commit -am "🔄 Atualiza ano automaticamente"
+
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git add README.md
+          git commit -m "🔄 Atualiza ano automaticamente"
           git push
