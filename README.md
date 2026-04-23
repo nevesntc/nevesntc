@@ -93,7 +93,8 @@ const bruno = {
 ## 🏆 Troféus GitHub
 
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=nevesntc&theme=onestar&margin-w=10&margin-h=10" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=nevesntc&show_icons=true&theme=tokyonight&hide_border=true" />
+  <img height="180em" src="https://streak-stats.demolab.com?user=nevesntc&theme=tokyonight&hide_border=true" />
 </div>
 
 ---
