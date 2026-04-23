@@ -5,27 +5,33 @@ on:
     - cron: '0 0 1 1 *' # todo 1º de janeiro
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-year:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Update year in README
         run: |
           YEAR=$(date +'%Y')
-          sed -i "s/© [0-9]\{4\}/© $YEAR/g" README.md
+          sed -i -E "s/© [0-9]{4}/© $YEAR/g" README.md
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          if git diff --quiet; then
+          git add README.md
+
+          if git diff --staged --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
-          git add README.md
           git commit -m "🔄 Atualiza ano automaticamente"
           git push
