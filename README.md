@@ -118,5 +118,5 @@ Se quiser **colaborar em projetos**, **trocar uma ideia** ou **contratar meus se
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
 
 <div align="center">
-  <sub>© YEAR <a href="https://github.com/nevesntc">Bruno Neves</a> — built with <code>coffee</code> & <code>code</code> ☕</sub>
+  <sub>© 2026 <a href="https://github.com/nevesntc">Bruno Neves</a> — built with <code>coffee</code> & <code>code</code> ☕</sub>
 </div>
