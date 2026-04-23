@@ -33,7 +33,7 @@ const bruno = {
   role:        "Full Stack Developer",
   educação:    "Engenharia de Software",
   localização: "Brasil 🇧🇷",
-  foco:        ["C# / .NET", "React", "Node.js", "PHP"],
+  foco:        ["C# / .NET", "React", "Java", "PHP"],
   missão:      "Transformar ideias em soluções digitais de impacto 🚀",
 };
 ```
