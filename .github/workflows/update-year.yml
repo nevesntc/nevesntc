@@ -13,8 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (try 1)
+        id: checkout1
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        continue-on-error: true
+
+      - name: Retry checkout (try 2)
+        if: steps.checkout1.outcome == 'failure'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Update year in README
         run: |
