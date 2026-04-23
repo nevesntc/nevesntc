@@ -2,7 +2,7 @@ name: Update Year
 
 on:
   schedule:
-    - cron: '0 0 1 1 *'
+    - cron: '0 0 1 1 *' # todo 1º de janeiro
   workflow_dispatch:
 
 jobs:
