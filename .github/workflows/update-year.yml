@@ -29,7 +29,7 @@ jobs:
       - name: Update year in README
         run: |
           YEAR=$(date +'%Y')
-          sed -i "s/YEAR/$YEAR/g" README.md
+          sed -i -E "s/© [0-9]{4}/© $YEAR/g" README.md
 
       - name: Commit changes
         run: |
