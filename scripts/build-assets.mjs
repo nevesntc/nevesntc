@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { frame, text, monogram, palette as c } from './lib/svg.mjs';
+import { projectVisuals, renderProject } from './lib/project-visuals.mjs';
 
 const root = fileURLToPath(new URL('../assets/', import.meta.url));
 async function save(path, value) {
@@ -40,24 +41,8 @@ await save('hero.svg', hero());
 await save('hero-mobile.svg', hero(true));
 await save('monogram.svg', frame(64, 64, 'BN', 'Monograma Bruno Neves.', monogram(7, 7, 50)));
 
-const projects = [
-  ['reimbursements', '01 / WORKFLOW & AUDIT', ['Solicitação', 'Aprovação', 'Pagamento'], 'Transições de estado · Histórico de ações'],
-  ['approvals', '02 / EVENT PUBLISHING', ['Decisão', 'RabbitMQ', 'Consumer'], 'Salvar → publicar → registrar evento'],
-  ['transactions', 'JAVA / TEMPORAL AGGREGATION', ['API REST', 'Memória', 'Estatísticas'], 'Janela de tempo configurável'],
-  ['digital-banking', 'JAVA / BUSINESS RULES', ['Controller', 'Serviço', 'JPA / H2'], 'Regras de conta · BigDecimal'],
-  ['messaging', '03 / REAL-TIME MESSAGING', ['Socket.IO', 'MySQL', 'Evento'], 'Receber → persistir → emitir'],
-  ['analytics', '04 / DATA AGGREGATION', ['Registro', 'EF Core', 'Ranking'], 'Filtrar → agrupar → somar'],
-];
-for (const [file, label, nodes, detail] of projects) {
-  let body = text(28, 35, label, 17, c.accent, 'letter-spacing="2"');
-  nodes.forEach((node, i) => {
-    const x = 28 + i * 232;
-    body += `<rect x="${x}" y="58" width="200" height="53" rx="8" fill="${c.surface}" stroke="${c.secondary}"/>`;
-    body += text(x + 100, 93, node, 25, c.text, 'text-anchor="middle"');
-    if (i < 2) body += `<path d="M${x + 205} 84h22m-6-6 6 6-6 6" fill="none" stroke="${c.bronze}" stroke-width="1.5"/>`;
-  });
-  body += text(28, 149, detail, 20, c.muted);
-  await save(`projects/${file}.svg`, frame(720, 172, label, detail + '. ' + nodes.join(' → '), body));
+for (const config of projectVisuals) {
+  await save(`projects/${config[0]}.svg`, renderProject(config));
 }
 
 const stages = [

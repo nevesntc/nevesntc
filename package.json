@@ -1,0 +1,13 @@
+{
+  "name": "bruno-neves-engineering-signature",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "assets": "node scripts/build-assets.mjs",
+    "motion": "node scripts/build-motion.mjs",
+    "activity": "node scripts/update-activity.mjs",
+    "test": "node --test scripts/activity.test.mjs scripts/motion.test.mjs"
+  },
+  "devDependencies": { "sharp": "0.35.5" }
+}

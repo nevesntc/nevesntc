@@ -1,6 +1,8 @@
 <picture>
-  <source media="(max-width: 600px)" srcset="assets/hero-mobile.svg">
-  <img src="assets/hero.svg" width="100%" alt="Bruno Neves — Software Engineer. Backend Engineering · APIs · Software Architecture.">
+  <source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="assets/hero-mobile.svg">
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero.svg">
+  <source media="(max-width: 600px)" srcset="assets/hero-mobile.gif">
+  <img src="assets/hero.gif" width="100%" alt="Bruno Neves — Software Engineer. Backend Engineering · APIs · Software Architecture.">
 </picture>
 
 **Software Engineer com foco em backend, Java e Spring Boot.** Minha trajetória passa por Ivory Integrada, Universidade de Barra Mansa e CSN. Gosto de traduzir necessidades de negócio em APIs claras, regras bem definidas e software que possa evoluir.
@@ -31,7 +33,7 @@ Uma seleção de projetos públicos para explorar regras de negócio, mensageria
 
 ### 01 — Reembolso360
 
-<a href="https://github.com/nevesntc/Reembolso360-Backend"><img src="assets/projects/reimbursements.svg" width="100%" alt="Etapas implementadas: solicitação de reembolso, aprovação e registro de pagamento. Mudanças de estado geram histórico."></a>
+<a href="https://github.com/nevesntc/Reembolso360-Backend"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/reimbursements.svg"><img src="assets/projects/reimbursements.gif" width="100%" alt="Fluxo ilustrado: solicitação de reembolso, aprovação e registro de pagamento. Mudanças de estado geram histórico."></picture></a>
 
 Modela um fluxo de reembolso: comprovantes, análise do RH, aprovação adicional por valor e registro de pagamento. O histórico acompanha as mudanças de estado da solicitação.
 
@@ -46,7 +48,7 @@ Modela um fluxo de reembolso: comprovantes, análise do RH, aprovação adiciona
 
 ### 02 — ApprovalFlowAPI
 
-<a href="https://github.com/nevesntc/ApprovalFlowAPI"><img src="assets/projects/approvals.svg" width="100%" alt="Fluxo implementado: decisão sobre a solicitação, publicação em RabbitMQ e consumer que registra o evento no console."></a>
+<a href="https://github.com/nevesntc/ApprovalFlowAPI"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/approvals.svg"><img src="assets/projects/approvals.gif" width="100%" alt="Fluxo ilustrado: decisão sobre a solicitação, publicação em RabbitMQ e consumer que registra o evento no console."></picture></a>
 
 Simula solicitações e aprovações em um sistema interno. A decisão atualiza o estado da solicitação e publica um evento RabbitMQ, consumido e registrado no console.
 
@@ -61,7 +63,7 @@ Simula solicitações e aprovações em um sistema interno. A decisão atualiza 
 
 ### 03 — CHAT-ON
 
-<a href="https://github.com/nevesntc/CHAT-ON"><img src="assets/projects/messaging.svg" width="100%" alt="Fluxo de envio em src/index.ts: Socket.IO recebe a mensagem, TypeORM salva no MySQL e um evento é enviado ao destinatário."></a>
+<a href="https://github.com/nevesntc/CHAT-ON"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/messaging.svg"><img src="assets/projects/messaging.gif" width="100%" alt="Fluxo ilustrado de src/index.ts: Socket.IO recebe a mensagem, TypeORM salva no MySQL e um evento é enviado ao destinatário."></picture></a>
 
 Aplicação de chat que combina API HTTP e troca de mensagens em tempo real. O fluxo de envio persiste a mensagem antes de emitir o evento para o destinatário.
 
@@ -76,7 +78,7 @@ Aplicação de chat que combina API HTTP e troca de mensagens em tempo real. O f
 
 ### 04 — AudienceAPI
 
-<a href="https://github.com/nevesntc/AudienceAPI"><img src="assets/projects/analytics.svg" width="100%" alt="Fluxo implementado: registro de audiência, persistência com Entity Framework Core e ranking por minutos assistidos."></a>
+<a href="https://github.com/nevesntc/AudienceAPI"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/analytics.svg"><img src="assets/projects/analytics.gif" width="100%" alt="Fluxo ilustrado: registro de audiência, persistência com Entity Framework Core e ranking por minutos assistidos. As barras são ilustrativas."></picture></a>
 
 Registra o tempo assistido de programas e expõe um ranking de audiência, com filtro opcional por data inicial.
 
@@ -92,7 +94,7 @@ Registra o tempo assistido de programas e expõe um ranking de audiência, com f
 
 #### API de Transações e Estatísticas
 
-<a href="https://github.com/nevesntc/API-de-Transacoes-e-Estatisticas"><img src="assets/projects/transactions.svg" width="100%" alt="API REST, armazenamento em memória e estatísticas por janela temporal."></a>
+<a href="https://github.com/nevesntc/API-de-Transacoes-e-Estatisticas"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/transactions.svg"><img src="assets/projects/transactions.gif" width="100%" alt="API REST, armazenamento em memória e estatísticas por janela temporal."></picture></a>
 
 Exercício baseado no desafio backend do Itaú. **Java 17 · Spring Boot · JUnit · Docker.** Janela temporal configurável com `OffsetDateTime`, agregações via `DoubleSummaryStatistics` e armazenamento em `ConcurrentLinkedQueue`. Validação de entrada e rejeição de datas futuras, com testes de serviço no repositório.
 
@@ -100,7 +102,7 @@ Exercício baseado no desafio backend do Itaú. **Java 17 · Spring Boot · JUni
 
 #### Sistema de Conta Digital
 
-<a href="https://github.com/nevesntc/Sistema-de-Conta-Digital"><img src="assets/projects/digital-banking.svg" width="100%" alt="Controller, serviço de contas e persistência JPA/H2."></a>
+<a href="https://github.com/nevesntc/Sistema-de-Conta-Digital"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/projects/digital-banking.svg"><img src="assets/projects/digital-banking.gif" width="100%" alt="Controller, serviço de contas e persistência JPA/H2."></picture></a>
 
 API de demonstração para abertura de contas, depósitos, saques e ativação. **Java 11 · Spring Boot · JPA / H2 · JUnit / Mockito.** Valores com `BigDecimal`, verificações de saldo, conta ativa e duplicidade de CPF/número de conta. Operações de escrita com `@Transactional`, exceções de domínio e testes com repositório simulado.
 
@@ -132,8 +134,10 @@ Como fundador da **MegaHype**, também desenvolvi uma perspectiva de produto e r
 ## 06 / Engineering mindset
 
 <picture>
-  <source media="(max-width: 600px)" srcset="assets/mindset-mobile.svg">
-  <img src="assets/mindset.svg" width="100%" alt="Problem → Design → Implementation → Validation → Delivery → Evolution.">
+  <source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="assets/mindset-mobile.svg">
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/mindset.svg">
+  <source media="(max-width: 600px)" srcset="assets/mindset-mobile.gif">
+  <img src="assets/mindset.gif" width="100%" alt="Problem → Design → Implementation → Validation → Delivery → Evolution.">
 </picture>
 
 **Entender antes de implementar.** Parto da necessidade, defino responsabilidades e contratos, implemento as regras e valido o comportamento. Automatizar a entrega, observar a execução e incorporar feedback completam o trabalho.
@@ -148,8 +152,10 @@ Inglês avançado · Aprendizado contínuo em backend, qualidade e arquitetura d
 Último commit público na branch padrão de cada projeto selecionado. Datas e referências vêm da API do GitHub.
 
 <picture>
-  <source media="(max-width: 600px)" srcset="assets/activity-mobile.svg">
-  <img src="assets/activity.svg" width="100%" alt="Últimas atualizações públicas dos quatro projetos selecionados. Datas, commits e links também disponíveis no histórico de cada repositório.">
+  <source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="assets/activity-mobile.svg">
+  <source media="(prefers-reduced-motion: reduce)" srcset="assets/activity.svg">
+  <source media="(max-width: 600px)" srcset="assets/activity-mobile.gif">
+  <img src="assets/activity.gif" width="100%" alt="Últimas atualizações públicas dos quatro projetos selecionados. O destaque animado percorre as linhas; não indica atividade ao vivo.">
 </picture>
 
 <sub>Este recorte mostra atualizações dos repositórios, de qualquer autor. A atividade geral está no <a href="https://github.com/nevesntc?tab=overview">perfil do GitHub</a>.</sub>

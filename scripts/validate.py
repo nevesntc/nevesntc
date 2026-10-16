@@ -2,6 +2,7 @@
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
@@ -39,3 +40,12 @@ for anchor in re.findall(r"\]\(#([^\)]+)\)", readme):
 assert not errors, "\n".join(errors)
 print(f"PASS: {len(assets)} SVGs, local image references, alt attributes and navigation anchors.")
 print(f"Total SVG weight: {sum(p.stat().st_size for p in assets):,} bytes.")
+gifs = sorted((ROOT / "assets").rglob("*.gif"))
+assert len(gifs) == 12, "Expected 12 animated assets"
+for path in gifs:
+    header = path.read_bytes()[:10]
+    assert header[:6] in {b"GIF89a", b"GIF87a"}, f"Invalid GIF: {path}"
+    width, height = struct.unpack("<HH", header[6:10])
+    assert width >= 540 and height >= 246, f"Invalid GIF dimensions: {path}"
+    assert path.stat().st_size < 256 * 1024, f"GIF exceeds 256 KB: {path}"
+print(f"PASS: {len(gifs)} GIFs; total {sum(p.stat().st_size for p in gifs):,} bytes. Motion frames verified by npm test.")

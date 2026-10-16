@@ -18,7 +18,17 @@ Uma assinatura editorial de engenharia: nome em escala dominante, monograma BN c
 
 Tipografia: fontes de sistema (`Segoe UI`, Arial e equivalentes), com monoespaçada apenas em referências de commit. Nenhum download de fonte, script ou recurso externo dentro dos SVGs. Textos principais de cada projeto permanecem em Markdown para seleção, busca, leitores de tela e tradução. Ícones de categorias são originais e decorativos, sem fingir ser logos oficiais.
 
-O `<picture>` usa versões compactas abaixo de 600 px para hero, processo de engenharia e atividade. Os diagramas têm uma única linha de três nós e títulos curtos. O conteúdo usa uma coluna; tabelas ficam restritas a comparações breves. Sem cards de duas colunas, contadores, animações, troféus ou badges de terceiros.
+O `<picture>` usa versões compactas abaixo de 600 px para hero, processo de engenharia e atividade. Os diagramas têm uma única linha de três nós e títulos curtos. O conteúdo usa uma coluna; tabelas ficam restritas a comparações breves. Sem cards de duas colunas, contadores, troféus ou badges de terceiros.
+
+## Movimento / revisão solicitada pelo proprietário
+
+O perfil inclui 12 GIFs locais: seis fluxos de projeto, hero em dois formatos, processo de engenharia em dois formatos e atividade em dois formatos. Os textos permanecem visíveis durante todo o ciclo; destaques e marcadores mostram a sequência. O chat também ilustra a confirmação, enquanto o ranking usa barras sem valores numéricos. Nenhuma animação simula atividade ao vivo ou inventa métricas.
+
+GIF foi escolhido porque a [documentação do GitHub](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files) não garante animações inline em SVG. Os SVGs permanecem como alternativa estática em todos os nove módulos `<picture>`, selecionados por `prefers-reduced-motion: reduce`. A variante mobile é selecionada antes da desktop. O README não precisa executar CSS próprio ou JavaScript para animar.
+
+Os ciclos duram aproximadamente 6,2 segundos (7,2 no processo de engenharia), sem flashes. Projetos são exportados a 1080 px para evitar ampliação de raster no desktop. O encoder usa paleta de 128 cores e otimização de quadros; cada GIF fica abaixo de 256 KB e o conjunto tem orçamento de 2 MB.
+
+Fontes e composição ficam em código: `scripts/lib/project-visuals.mjs` compartilha o desenho entre SVG e GIF; `scripts/build-motion.mjs` gera as animações; `scripts/lib/gif.mjs` rasteriza com Sharp e define explicitamente a duração de cada quadro. A dependência Sharp é fixada em `package-lock.json` e usada apenas na geração, não pelo visitante. Para o painel de atividade, SVG e GIF são gerados a partir do mesmo snapshot.
 
 ## Curadoria e veracidade
 
@@ -67,36 +77,37 @@ Foram consideradas as documentações dos projetos [GitHub Readme Stats](https:/
 
 Escolha: uma única visualização local com o último commit de quatro repositórios públicos. Sem ranking, contagem de estrelas ou inferência de produtividade. Não substitui o calendário de contribuições nativo. Os commits podem ser de qualquer autor. `assets/activity.json` guarda SHA e data do committer em UTC; SVGs exibem a data em `DD/MM/AAAA`. A data de consulta só muda quando algum commit muda. É deliberadamente possível haver projetos sem atualização recente.
 
-`scripts/update-activity.mjs` consulta quatro endpoints REST, valida todas as respostas antes de escrever e preserva o snapshot quando a consulta falha. Não precisa de pacotes npm. Os dois SVGs e o JSON são versionados; mesmo com Actions indisponível, o último resultado permanece visível.
+`scripts/update-activity.mjs` consulta quatro endpoints REST, valida todas as respostas antes de escrever e preserva o snapshot quando a consulta falha. Renderiza os GIFs antes de alterar os arquivos versionados. Os dois GIFs, os dois SVGs e o JSON são versionados; mesmo com Actions indisponível, o último resultado permanece visível.
 
-Workflow: segunda-feira às **07h23 em America/Sao_Paulo** (10h23 UTC), ou execução manual na branch padrão. A execução pode atrasar conforme a fila do GitHub. A única action é checkout, fixada pelo SHA consultado da tag v4. Permissão de escrita de conteúdo apenas no job de atualização; sem PAT. Git adiciona explicitamente somente os três arquivos de atividade e não faz commit se não houver mudanças. Não há trigger de PR nem interpolação de dados da API em comandos shell.
+Workflow: segunda-feira às **07h23 em America/Sao_Paulo** (10h23 UTC), ou execução manual na branch padrão. A execução pode atrasar conforme a fila do GitHub. Checkout e setup-node estão fixadas pelos SHAs consultados das tags v4. Node.js 22 e `npm ci --ignore-scripts` instalam a dependência de geração pelo lockfile. Permissão de escrita de conteúdo apenas no job de atualização; sem PAT. Git adiciona explicitamente somente os cinco arquivos de atividade e não faz commit se não houver mudanças. Não há trigger de PR nem interpolação de dados da API em comandos shell.
 
 Referências: [GITHUB_TOKEN](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token), [eventos e schedule](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows), [REST: commits](https://docs.github.com/en/rest/commits/commits#list-commits).
 
 ### Comandos de manutenção
 
-Requer Node.js 22 ou superior. A implementação usa apenas módulos nativos.
+Requer Node.js 22 ou superior; Python 3 para a validação de arquivos. Sharp é a única dependência direta de geração.
 
 ```sh
-node scripts/build-assets.mjs
-node scripts/update-activity.mjs --offline
-node --test scripts/activity.test.mjs
+npm ci --ignore-scripts
+npm run assets
+npm run motion
+npm test
 python scripts/validate.py
 git diff --check
 ```
 
 Para consultar dados novos: `node scripts/update-activity.mjs`. O token é opcional para acesso público fora de Actions. Não salvar tokens no repositório. Se a API falhar ou limitar requisições, investigar o erro e manter o último snapshot; não substituir por números fictícios.
 
-Editar cores e primitivas em `scripts/lib/svg.mjs`; composição em `scripts/build-assets.mjs`. Regenerar os SVGs após alterações. Para alterar a seleção de atividade, atualizar a lista em `scripts/update-activity.mjs`, o snapshot inicial e os testes. Revalidar fatos quando mudar o texto dos projetos.
+Editar cores e primitivas em `scripts/lib/svg.mjs`; composição em `scripts/build-assets.mjs` e `scripts/lib/project-visuals.mjs`. Regenerar SVGs e GIFs após alterações. Para alterar a seleção de atividade, atualizar a lista em `scripts/update-activity.mjs`, o snapshot inicial e os testes. Revalidar fatos quando mudar o texto dos projetos. `node scripts/update-activity.mjs --offline` regenera apenas o painel, sem consultar a rede.
 
-Para desativar: Actions → Refresh public engineering activity → Disable workflow, ou remover apenas o bloco `schedule` do YAML para manter execução manual. Os SVGs continuam visíveis. Em repositório público, workflows agendados podem ser desativados pelo GitHub após inatividade; o fallback não depende da execução.
+Para desativar: Actions → Refresh public engineering activity → Disable workflow, ou remover apenas o bloco `schedule` do YAML para manter execução manual. Os assets continuam visíveis. Em repositório público, workflows agendados podem ser desativados pelo GitHub após inatividade; o fallback não depende da execução.
 
 ## Publicação
 
 Para publicar alterações nesta identidade, revisar README, assets, scripts e workflow e executar os comandos após autorização do proprietário:
 
 ```sh
-git add README.md assets scripts docs .github .gitignore
+git add README.md assets scripts docs .github .gitignore package.json package-lock.json
 git commit -m "feat: introduce engineering signature profile"
 git push origin main
 ```

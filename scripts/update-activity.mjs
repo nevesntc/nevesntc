@@ -22,7 +22,7 @@ export function validateSnapshot(data) {
   return data;
 }
 
-export function renderActivity(data, mobile = false) {
+export function renderActivity(data, mobile = false, phase = null) {
   validateSnapshot(data);
   const width = mobile ? 540 : 1080, height = mobile ? 604 : 414;
   let body = text(28, 38, 'PUBLIC CODE / LAST COMMIT', mobile ? 22 : 17, c.accent, 'letter-spacing="2"');
@@ -30,9 +30,12 @@ export function renderActivity(data, mobile = false) {
   projects.forEach(([repository, name, stack], i) => {
     const p = data.projects.find(p => p.repository === repository);
     const y = 116 + i * (mobile ? 112 : 64);
+    const selected = phase !== null && Math.min(3, Math.floor(phase * 4)) === i;
+    if (selected) body += `<rect x="22" y="${y - 21}" width="${width - 44}" height="${mobile ? 104 : 56}" rx="7" fill="${c.surface}" stroke="${c.bronze}"/>`;
     const date = new Date(p.date).toISOString().slice(0, 10).split('-').reverse().join('/');
     body += `<circle cx="34" cy="${y + 4}" r="4" fill="${c.accent}"/>`;
     if (i < 3) body += `<path d="M34 ${y + 11}v${mobile ? 94 : 46}" stroke="${c.secondary}"/>`;
+    if (selected) body += `<circle cx="34" cy="${y + 4}" r="10" fill="${c.accent}" opacity=".17"/>`;
     body += text(52, y + 10, name, mobile ? 26 : 24, c.text, 'font-weight="500"');
     if (mobile) {
       body += text(52, y + 44, stack, 23, c.muted);
@@ -72,8 +75,14 @@ async function main() {
   // No housekeeping commits just to change the consultation date.
   if (!offline && JSON.stringify(old.projects) === JSON.stringify(data.projects)) data = old;
   const desktop = renderActivity(data), mobile = renderActivity(data, true);
+  const { encodeGif, writeChanged } = await import('./lib/gif.mjs');
+  // Render both animations before changing any versioned file.
+  const desktopGif = await encodeGif(phase => renderActivity(data, false, phase), 1080, 414);
+  const mobileGif = await encodeGif(phase => renderActivity(data, true, phase), 540, 604);
   await writeFile(new URL('../assets/activity.svg', import.meta.url), desktop);
   await writeFile(new URL('../assets/activity-mobile.svg', import.meta.url), mobile);
+  await writeChanged(new URL('../assets/activity.gif', import.meta.url), desktopGif);
+  await writeChanged(new URL('../assets/activity-mobile.gif', import.meta.url), mobileGif);
   await writeFile(snapshotUrl, JSON.stringify(data, null, 2) + '\n');
   console.log(offline ? 'Activity rendered from versioned snapshot.' : 'Public activity refreshed.');
 }

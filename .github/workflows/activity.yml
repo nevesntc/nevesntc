@@ -21,16 +21,23 @@ jobs:
     steps:
       - name: Checkout profile repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned rendering dependency
+        run: npm ci --ignore-scripts
       - name: Refresh static assets using public repository commits
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           node --version
-          node --test scripts/activity.test.mjs
+          npm test
           node scripts/update-activity.mjs
       - name: Commit only changed activity assets
         run: |
-          git add -- assets/activity.json assets/activity.svg assets/activity-mobile.svg
+          git add -- assets/activity.json assets/activity.svg assets/activity-mobile.svg assets/activity.gif assets/activity-mobile.gif
           if git diff --cached --quiet; then
             echo 'No public project updates.'
             exit 0
