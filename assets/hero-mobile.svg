@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 440" width="540" height="440" role="img" aria-labelledby="title desc">
+<title id="title">Bruno Neves / Engineering Signature</title><desc id="desc">Software Engineer. Backend Engineering, APIs e Software Architecture.</desc>
+<rect width="540" height="440" rx="16" fill="#0B1015"/>
+<rect x=".5" y=".5" width="539" height="439" rx="15.5" fill="none" stroke="#202B34"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
+  <defs><radialGradient id="glow"><stop stop-color="#A67C52" stop-opacity=".14"/><stop offset="1" stop-color="#0B1015" stop-opacity="0"/></radialGradient></defs>
+  <rect width="540" height="440" rx="16" fill="url(#glow)"/>
+  <g stroke="#202B34" stroke-width=".7" opacity=".35"><path d="M0 0V440M0 0H540"/><path d="M100 0V440M0 60H540"/><path d="M200 0V440M0 120H540"/><path d="M300 0V440M0 180H540"/><path d="M400 0V440M0 240H540"/><path d="M500 0V440M0 300H540"/><path d="M600 0V440M0 360H540"/><path d="M700 0V440M0 420H540"/><path d="M800 0V440M0 480H540"/><path d="M900 0V440M0 540H540"/><path d="M1000 0V440M0 600H540"/><path d="M1100 0V440M0 660H540"/></g>
+  <path d="M34 48H66" stroke="#D8B68A" stroke-width="3"/>
+  <text x="82" y="54" font-size="19" fill="#D8B68A" letter-spacing="2.5">ENGINEERING SIGNATURE</text>
+  <g transform="translate(440 26) scale(0.75)" fill="none" stroke="#D8B68A" stroke-width="3" stroke-linejoin="round">
+<path d="M8 52V12h14c17 0 17 19 0 19H8m14 0c19 0 19 21 0 21H8"/>
+<path d="M40 52V12l16 40V12"/>
+</g>
+  <text x="32" y="143" font-size="61" fill="#F4F1EB" font-weight="700" letter-spacing="-3">BRUNO NEVES</text>
+  <text x="34" y="198" font-size="32" fill="#D8B68A" font-weight="400">Software Engineer</text>
+  <text x="34" y="270" font-size="25" fill="#AAB4BE" >Backend Engineering</text><text x="34" y="307" font-size="25" fill="#AAB4BE" >APIs · Software Architecture</text>
+
+  <path d="M34 376H506" stroke="#202B34"/>
+  <text x="34" y="410" font-size="17" fill="#AAB4BE" letter-spacing="1.6">BRUNO NEVES / SOFTWARE ENGINEERING</text>
+  </g>
+</svg>

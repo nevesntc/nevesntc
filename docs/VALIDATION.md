@@ -1,0 +1,73 @@
+# Validação e avaliação crítica
+
+Relatório da preparação local, com verificações concluídas em 16/10/2026, antes da autorização de publicação. Nessa etapa, nenhum commit, push ou alteração de repositório referenciado foi realizado.
+
+## Implementação entregue
+
+- Modificado: `README.md`, substituindo banners/contadores e gráficos externos por apresentação editorial em português, com foco em backend.
+- Criados: 18 SVGs locais em `assets/` — hero e versão mobile, monograma, seis diagramas de projetos, processo e versão mobile, cinco ícones e atividade em duas versões.
+- Criado: `assets/activity.json`, snapshot verificável de commits públicos.
+- Criados: gerador de assets, primitivas SVG compartilhadas, atualização de atividade, testes e validação offline em `scripts/`.
+- Criado: `.github/workflows/activity.yml`, atualização semanal/manual com `GITHUB_TOKEN` e action fixada por SHA.
+- Criados: `.gitignore`, `docs/DESIGN.md` e este relatório. Arquivos de preview e screenshots ficam em `.preview/`, ignorados pelo Git.
+
+## Conteúdo e links
+
+Quatro destaques: Reembolso360, ApprovalFlowAPI, CHAT-ON e AudienceAPI. Os dois estudos Java inicialmente priorizados continuam com diagramas e descrição técnica própria na seção complementar; Campanhas e Reservas aparecem em tabela breve.
+
+Os oito repositórios apresentados foram acessados por API; os arquivos de evidência vinculados no README foram lidos nos commits fixados. O repositório de perfil é público e usa `main`. Links internos e caminhos de imagens foram validados. LinkedIn tem o endereço fornecido pelo usuário, mas bloqueou a consulta automatizada com status 999; disponibilidade da página não foi confirmada. O endereço `mailto:` foi conferido como texto, sem enviar mensagem ou testar recebimento.
+
+As experiências citadas vêm da missão fornecida. Sem currículo separado, cargos, períodos e responsabilidades específicas não foram acrescentados. Sem fotografia anexada, a referência cromática vem da descrição da missão. Não foram inventadas métricas, senioridade ou certificações.
+
+## Verificações técnicas
+
+| Verificação | Resultado |
+| --- | --- |
+| `node --test scripts/activity.test.mjs` | 4 testes aprovados: dados inválidos/incompletos, mapeamento da API, erro/retorno vazio e conteúdo em ambos os layouts. |
+| `node scripts/update-activity.mjs` | Consulta real à API pública executada com sucesso; SHA e datas dos quatro projetos correspondem ao snapshot. |
+| `node scripts/update-activity.mjs --offline` | Regeneração a partir do fallback versionado aprovada. |
+| `node scripts/build-assets.mjs` | SVGs estáticos regenerados com sucesso. |
+| `python scripts/validate.py` | 18 SVGs válidos, imagens locais existentes, alt attributes e âncora de navegação corretos. |
+| Peso | 28.606 bytes no conjunto dos SVGs; nenhum ultrapassa 20 KB. |
+| Conteúdo SVG | Sem scripts, `foreignObject`, animações, imagens incorporadas ou recursos externos. |
+| `git diff --check` | Sem erros de whitespace. |
+| Workflow | Revisão manual de YAML, triggers, permissões, paths de commit e tratamento de falhas. Não executado no GitHub, pois as alterações estão locais. |
+
+O teste real de API encontrou restrição de rede na primeira execução local; a execução autorizada com acesso de rede passou. O snapshot permaneceu íntegro durante a falha. A suíte testa respostas 403, retorno vazio e dados inválidos sem escrever nos assets.
+
+## Validação visual
+
+README renderizado com Marked e folha de estilo local aproximando o Markdown do GitHub; screenshots com Chromium/Chrome via Playwright. O processo não publicou conteúdo e não depende de servidor externo.
+
+| Layout | Imagens | Largura da página | Navegação |
+| --- | --- | --- | --- |
+| Desktop 1280 px / escuro | Todas carregadas | Sem overflow | Projetos acessível pela âncora |
+| Desktop 1280 px / claro | Todas carregadas | Sem overflow | Projetos acessível pela âncora |
+| Mobile 390 px / escuro | Todas carregadas; hero compacto selecionado | Sem overflow | Projetos acessível pela âncora |
+| Mobile 390 px / claro | Todas carregadas; hero compacto selecionado | Sem overflow | Projetos acessível pela âncora |
+
+A seção complementar foi expandida nos quatro cenários, sem overflow. Os 18 SVGs também foram abertos individualmente no navegador; nenhuma caixa de texto ultrapassou seu `viewBox`. Inspeção visual cobriu hero, módulos de projeto, processo e painel de atividade. O espaçamento da última linha dos cards de processo foi refinado antes da entrega.
+
+Contraste calculado segundo luminância relativa sRGB: o menor contraste dos três tokens de texto sobre os três fundos é **6,85:1** (`#AAB4BE` sobre `#202B34`). Champagne sobre fundo principal: **9,99:1**. Bronze e grid são decorativos; não carregam informação textual essencial. Os microtextos dos diagramas ficam pequenos no celular; a descrição completa permanece em texto Markdown logo abaixo.
+
+Previews locais em `.preview/`: `desktop-dark.png`, `desktop-light.png`, `mobile-dark.png`, `mobile-light.png`; HTMLs `dark.html` e `light.html`; relatório `report.json`. Há também recortes de hero, projetos, processo e atividade.
+
+Esses arquivos são locais e ignorados; não fazem parte da publicação. Não equivalem a um preview do renderer/sanitizador real do GitHub. A conferência final no perfil publicado e a primeira execução do workflow continuam como verificações pós-publicação.
+
+## Avaliação crítica
+
+Notas sobre esta apresentação, não sobre senioridade profissional. Nenhum item recebe 10 porque há limites de conteúdo e validação real.
+
+| Dimensão | Nota / 10 | Justificativa |
+| --- | --- | --- |
+| Identidade visual | 8,5 | Monograma e composição autorais, paleta coesa e variantes compactas. A moldura e a tipografia do GitHub continuam fora do controle do README. |
+| Clareza profissional | 8,5 | Backend, Java e Spring Boot aparecem na primeira tela. A trajetória perde especificidade sem cargos e períodos documentados. |
+| Credibilidade técnica | 8,0 | Oito projetos inspecionados, quatro destaques e links para implementação. Não houve execução das aplicações e há divergências em testes de projetos complementares e do chat. |
+| Experiência do visitante | 8,0 | Conteúdo escaneável, links diretos e uma coluna. Ainda exige rolagem considerável no celular; evidências complementares ficam recolhidas. |
+| Qualidade de implementação | 8,5 | Assets leves, válidos, acessíveis e independentes de geradores externos; automação com fallback testado. Renderer e permissões de Actions reais só poderão ser confirmados após publicação. |
+
+## Publicação e manutenção
+
+Passos, comandos, configuração de Actions, horário e desativação estão em [DESIGN.md](DESIGN.md). O workflow faz commits de assets depois que for publicado; não roda a partir desta cópia local. Se a branch tiver proteção contra commits do bot, manter essa proteção e atualizar os assets pelo fluxo de revisão do repositório.
+
+Revisar projetos e experiências quando houver informação profissional nova. O painel semanal atualiza commits, mas não altera os textos editoriais ou garante que as descrições continuem refletindo futuras mudanças nos projetos.

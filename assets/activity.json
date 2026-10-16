@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-16",
+  "projects": [
+    {
+      "repository": "nevesntc/Reembolso360-Backend",
+      "sha": "1d4c73a593cb47d0e734b41550c54d8bf35fd84d",
+      "date": "2026-05-23T15:03:33Z"
+    },
+    {
+      "repository": "nevesntc/ApprovalFlowAPI",
+      "sha": "c3235284de43bfadf2623c2efdd23d199a8b24ee",
+      "date": "2026-07-07T15:49:11Z"
+    },
+    {
+      "repository": "nevesntc/CHAT-ON",
+      "sha": "c624a7d2806a7f977863e9e988c3d24fbe7004e2",
+      "date": "2025-05-28T16:59:59Z"
+    },
+    {
+      "repository": "nevesntc/AudienceAPI",
+      "sha": "7e129702d5e75009fb691c50e60aaf9b45f31c4b",
+      "date": "2026-04-23T15:51:12Z"
+    }
+  ]
+}

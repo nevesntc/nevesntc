@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+<title id="title">data</title><desc id="desc">Ícone de data.</desc>
+<rect width="64" height="64" rx="16" fill="#0B1015"/>
+<rect x=".5" y=".5" width="63" height="63" rx="15.5" fill="none" stroke="#202B34"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"><g fill="none" stroke="#D8B68A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="14" rx="23" ry="8"/><path d="M9 14v34c0 11 46 11 46 0V14M9 31c0 11 46 11 46 0"/></g></g>
+</svg>
